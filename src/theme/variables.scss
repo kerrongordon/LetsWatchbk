@@ -37,9 +37,25 @@ $colors: (
   primary:    #488aff,
   secondary:  #32db64,
   danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
+  light:      #ecf0f1,
+  dark:       #1d1d1d,
+  bg:         #ededf1,
+  textc:      #7680aa,
 );
+
+
+$background-color: color($colors, bg);
+$tabs-background: color($colors, bg);
+$toolbar-background: color($colors, bg);
+
+
+$card-md-text-color: color($colors, textc);
+
+$text-color: color($colors, textc);
+$item-md-font-size: 1.3rem;
+
+// $card-md-box-shadow: 
+
 
 
 // App iOS Variables

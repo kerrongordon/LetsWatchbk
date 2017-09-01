@@ -1,0 +1,70 @@
+page-movie {
+  ion-navbar, ion-header {
+    background: transparent;
+    background-color: transparent;
+  }
+  .card-background-page {
+    ion-card {
+      position: relative;
+      text-align: center;
+    }
+    .fullimage::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      right: 0px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      background: url(../assets/card_wave_big.svg) repeat-x bottom right;
+    }
+  }
+  .genre {
+    padding: 0 5px;
+  }
+  .fullimage {
+    margin: 0;
+    width: 100%;
+    box-shadow: none;
+    position: relative;
+  }
+  .cover {
+    box-shadow: 0px 12px 24px -6px rgba(0, 0, 0, 0.51);
+  }
+  .wavebig {
+    position: absolute;
+    top: 60%;
+  }
+  .icon {
+    min-height: 2.0rem;
+    font-size: 2.0rem;
+  }
+  .moviecover {
+    align-items: flex-end;
+  }
+  .mup {
+    margin-bottom: 20px;
+  }
+  .pageview {
+    transition: all 0.3s ease-in-out;
+  }
+  .textItem {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  @media only screen and (max-width: 440px) {
+    .pageview {
+      margin-top: -75px;
+    }
+  }
+  @media only screen and (min-width: 440px) {
+    .pageview {
+      margin-top: -110px;
+    }
+  }
+  @media only screen and (min-width: 600px) {
+    .pageview {
+      margin-top: -150px;
+    }
+  }
+}

@@ -1,17 +1,49 @@
-<ion-header>
+<ion-header no-border>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title text-center>LetsWatch</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content>
+
+  <ion-grid *ngIf="moviesLists; else nomove">
+    <ion-row>
+      <ion-col col-6 col-sm-4 col-md-3 col-lg-2 *ngFor="let movie of moviesLists">
+        <ion-card class="card" (click)="openMove(movie.id, movie.title)">
+          <div class="cardImage">
+              <img src="{{ movie.medium_cover_image }}" alt="{{ movie.title }}" />
+          </div>
+          <ion-card-content class="content">
+            <h3 text-nowrap><strong>{{ movie.title }}</strong></h3>
+            <div class="genres" text-nowrap><strong>Genres:</strong> <span *ngFor="let genre of movie.genres"> {{ genre }}</span></div>
+            <div class="year"><strong>Year:</strong> <span> {{ movie.year }}</span></div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <ng-template #nomove>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6 col-sm-4 col-md-3 col-lg-2 *ngFor="let nomovie of [1,2,3,4,5,6,7,8,9,10,11,12]">
+          <ion-card class="card">
+            <img src="../assets/placeholder.jpg" alt="Loading" />
+            <ion-card-content class="content">
+              <img class="wave" src="../assets/card_wave.svg" alt="wave">
+              <h3 text-nowrap><strong>Loading</strong></h3>
+              <div class="genres" text-nowrap><strong>Genres:</strong> <span *ngFor="let load of [1,2,3]"> {{ load }}</span></div>
+              <div class="year"><strong>Year:</strong> <span> Loading</span></div>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-template>
+
+  <ion-infinite-scroll *ngIf="moviesLists" (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
 </ion-content>

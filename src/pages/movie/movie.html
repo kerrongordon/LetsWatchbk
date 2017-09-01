@@ -1,0 +1,110 @@
+<ion-header no-border>
+
+  <ion-navbar transparent>
+    <ion-title>{{ pagetitle }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+
+<ion-content class="card-background-page">
+  <div *ngIf="movie">
+ 
+    <ion-card class="fullimage">
+      <img src="{{ movie.background_image }}" />
+    </ion-card>
+
+
+    <ion-grid padding class="pageview">
+
+      <ion-row class="moviecover">
+
+        <ion-col align-items-start col-4 col-sm-4>
+          <div>
+            <ion-card class="cover">
+              <img src="{{ movie.medium_cover_image }}" />
+            </ion-card>
+          </div>
+        </ion-col>
+
+        <ion-col align-items-end col-8 col-sm-7>
+          <div class="mup">
+            <h3 text-nowrap class="textItem"><strong>Title: </strong>{{ movie.title }} {{ movie.year }}</h3>
+            <h5 text-nowrap class="textItem"><strong>Genres: </strong><span class="genre" *ngFor="let genre of movie.genres">{{ genre }}</span></h5>
+          </div>
+        </ion-col>
+
+      </ion-row>
+
+    </ion-grid>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-segment [(ngModel)]="segments" color="danger">
+            <ion-segment-button value="description">
+              Description
+            </ion-segment-button>
+            <ion-segment-button value="details">
+              Details
+            </ion-segment-button>
+            <ion-segment-button value="cast">
+              Cast
+            </ion-segment-button>
+          </ion-segment>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid [ngSwitch]="segments">
+      <ion-row *ngSwitchCase="'description'">
+        <ion-col col-12 padding>
+          <p>
+            {{ movie.description_full }}
+          </p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid [ngSwitch]="segments">
+      <ion-row *ngSwitchCase="'details'">
+        <ion-col col-12 padding>
+
+          <ion-list>
+            <ion-item>
+              <ion-icon class="icon" color="textc" name="videocam" item-start></ion-icon><strong>Title: </strong> {{ movie.title }}
+            </ion-item>
+            <ion-item>
+              <ion-icon class="icon" color="textc" name="time" item-start></ion-icon><strong>Year: </strong> {{ movie.year }}
+            </ion-item>
+            <ion-item>
+              <ion-icon class="icon" color="textc" name="chatbubbles" item-start></ion-icon><strong>Language: </strong> {{ movie.language }}
+            </ion-item>
+            <ion-item>
+              <ion-icon class="icon" color="textc" name="analytics" item-start></ion-icon><strong>Rating: </strong> {{ movie.rating }}
+            </ion-item>
+          </ion-list>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid [ngSwitch]="segments">
+      <ion-row *ngSwitchCase="'cast'">
+        <ion-col col-12 padding>
+          <ion-list *ngFor="let cas of movie.cast">
+            <ion-item>
+              <ion-avatar item-start>
+                <img src="{{ cas.url_small_image }}">
+              </ion-avatar>
+              <h2>{{ cas.name }}</h2>
+              <p>{{ cas.character_name }}</p>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </div>
+</ion-content>
